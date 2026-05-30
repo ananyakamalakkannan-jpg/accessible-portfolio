@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Accessible personal portfolio website">
+  <meta name="keywords" content="portfolio, web developer, HTML, CSS, JavaScript">
+  <meta name="author" content="Ananya">
+  <title>Ananya — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #13131c;
+      --card: #1a1a28;
+      --accent1: #e8a87c;
+      --accent2: #a78bfa;
+      --accent3: #67e8f9;
+      --text: #f0eee8;
+      --muted: #8884a0;
+      --border: rgba(167,139,250,0.15);
+    }
+
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ADD THIS HERE */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+   
+    /* ─── NOISE OVERLAY ─── */
+    body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at top right,
+    rgba(167,139,250,0.08),
+    transparent 40%);
+
+    z-index:-1;
+}
+      
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+    /* ─── AMBIENT GLOW BLOBS ─── */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(35px);
+      opacity: 0.18;
+      pointer-events: none;
+      animation: drift 14s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+    .blob-1 { width: 500px; height: 500px; background: var(--accent2); top: -150px; right: -100px; animation-delay: 0s; }
+    .blob-2 { width: 380px; height: 380px; background: var(--accent1); bottom: 100px; left: -120px; animation-delay: -5s; }
+    .blob-3 { width: 280px; height: 280px; background: var(--accent3); top: 50%; left: 50%; animation-delay: -9s; }
+
+    @keyframes drift {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(30px, 20px) scale(1.07); }
+    }
+
+    /* ─── NAVBAR ─── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 5vw;
+      display: flex;
+      align-items: center;
+      background: rgba(10,10,15,0.92);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+     font-family: Georgia, serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2.2rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -4px;
+      width: 0; height: 1.5px;
+      background: var(--accent1);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--accent1); }
+    .nav-links a.active::after { width: 100%; }
+
+    /* ─── MAIN ─── */
+    main {
+      position: relative;
+      z-index: 1;
+      padding-top: 100px;
+    }
+
+    /* ─── HERO SECTION ─── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 6rem 8vw 4rem;
+      overflow: hidden;
+    }
+
+    .hero::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at top right,
+      rgba(167,139,250,0.18),
+      transparent 40%),
+      radial-gradient(circle at bottom left,
+      rgba(232,168,124,0.15),
+      transparent 40%);
+}
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(10,10,15,0.92) 40%, rgba(167,139,250,0.06) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent3);
+      border: 1px solid rgba(103,232,249,0.3);
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.3s ease both;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent3);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 7vw, 5.2rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      animation: fadeUp 0.8s 0.15s ease both;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent1);
+      display: block;
+    }
+
+    .hero-sub {
+      margin-top: 1.5rem;
+      font-size: 1.1rem;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 520px;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .divider {
+      width: 80px; height: 2px;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      margin: 2rem 0;
+      animation: fadeUp 0.8s 0.45s ease both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.55s ease both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      color: #0a0a0f;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--accent2), var(--accent1));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .btn-primary span { position: relative; z-index: 1; }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(232,168,124,0.35);
+    }
+
+    .btn-primary:hover::before { opacity: 1; }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      border-radius: 12px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: border-color 0.3s, transform 0.3s, background 0.3s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent2);
+      background: rgba(167,139,250,0.08);
+      transform: translateY(-2px);
+    }
+
+    /* ─── SCROLL INDICATOR ─── */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      animation: fadeUp 1s 0.7s ease both;
+      opacity: 0.5;
+    }
+
+    .scroll-indicator span {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .scroll-mouse {
+      width: 22px; height: 36px;
+      border: 1.5px solid var(--muted);
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      padding-top: 6px;
+    }
+
+    .scroll-dot {
+      width: 4px; height: 8px;
+      background: var(--accent1);
+      border-radius: 2px;
+      animation: scrolldown 1.8s ease-in-out infinite;
+    }
+
+    @keyframes scrolldown {
+      0%   { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(12px); opacity: 0; }
+    }
+
+    /* ─── SKILLS SECTION ─── */
+    .skills-section {
+      padding: 5rem 8vw;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-sub {
+      color: var(--muted);
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 500px;
+      margin-bottom: 3rem;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .skill-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem 1.6rem;
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+      overflow: hidden;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .skill-card:nth-child(1) { animation-delay: 0.1s; }
+    .skill-card:nth-child(2) { animation-delay: 0.2s; }
+    .skill-card:nth-child(3) { animation-delay: 0.3s; }
+    .skill-card:nth-child(4) { animation-delay: 0.4s; }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 50px rgba(0,0,0,0.4);
+    }
+
+    .skill-card:hover::before { transform: scaleX(1); }
+
+    .skill-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .skill-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .skill-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 8vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer p {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover { color: var(--accent1); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { gap: 1.2rem; }
+      .nav-links a { font-size: 0.75rem; }
+      .hero { padding: 5rem 5vw 3rem; }
+      .skills-section { padding: 3rem 5vw; }
+      .skills-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; }
+    }
+    .skip-link {
+  position: absolute;
+  top: -40px;
+  left: 20px;
+  background: var(--accent2);
+  color: white;
+  padding: 10px;
+  z-index: 9999;
+}
+
+.skip-link:focus {
+  top: 20px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent3);
+  outline-offset: 4px;
+}
+  </style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">
+  Skip to Main Content
+</a>
+  <!-- AMBIENT BLOBS -->
+ <div class="blob blob-1" aria-hidden="true"></div>
+<div class="blob blob-2" aria-hidden="true"></div>
+<div class="blob blob-3" aria-hidden="true"></div>
+  <!-- HEADER -->
+  <header>
+    <nav class="navbar" aria-label="Main Navigation">
+
+   <a href="index.html"
+   class="logo"
+   aria-label="Go to homepage">
+   Ananya
+</a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main id="main-content">
+
+    <!-- HERO SECTION -->
+   <section class="hero" aria-labelledby="hero-heading">
+  <div class="hero-content">
+
+    <div class="hero-tag">Open to Opportunities</div>
+
+    <h1 id="hero-heading" class="hero-title">
+      Hi, I'm
+      <em>Ananya</em>
+    </h1>
+
+    <div class="divider"></div>
+
+    <p class="hero-sub">
+      A beginner web developer passionate about creating accessible, modern, and meaningful digital experiences.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="projects.html" class="btn-primary">
+        <span>✦ View Projects</span>
+      </a>
+
+      <a href="contact.html" class="btn-secondary">
+        Contact Me →
+      </a>
+    </div>
+
+  </div>
+</section>
+    
+    <!-- SKILLS SECTION -->
+    <section
+  class="skills-section"
+  aria-labelledby="skills-heading">
+
+  <p class="section-label">What I know</p>
+
+  <h2
+    id="skills-heading"
+    class="section-title">
+    My Skills
+  </h2>
+
+  <p class="section-sub">
+    A growing toolkit of technologies I use to build clean, responsive websites.
+  </p>
+  
+      <div class="skills-grid">
+        <article class="skill-card">
+          <span class="skill-icon">🧱</span>
+          <h4 class="skill-name">HTML5</h4>
+          <p class="skill-desc">Semantic, accessible markup that forms the backbone of every great website.</p>
+        </article>
+        <article class="skill-card">
+          <span class="skill-icon">🎨</span>
+          <h4 class="skill-name">CSS3</h4>
+          <p class="skill-desc">Modern layouts, animations, and responsive designs that look great on every screen.</p>
+        </article>
+        <article class="skill-card">
+          <span class="skill-icon">⚡</span>
+          <h4 class="skill-name">JavaScript</h4>
+          <p class="skill-desc">Interactive, dynamic web experiences powered by clean and readable JS code.</p>
+        </article>
+        <article class="skill-card">
+          <span class="skill-icon">🐙</span>
+          <h4 class="skill-name">GitHub</h4>
+          <p class="skill-desc">Version control and collaboration — keeping projects organized and shareable.</p>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Ananya. All Rights Reserved.</p>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
+
+</body>
+</html>

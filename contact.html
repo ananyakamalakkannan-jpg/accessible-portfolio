@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta
+  name="description"
+  content="Contact Ananya, a beginner frontend developer specializing in HTML, CSS, and JavaScript.">
+
+<meta
+  name="keywords"
+  content="Ananya, portfolio, frontend developer, web developer">
+
+<meta
+  name="author"
+  content="Ananya">
+  <meta property="og:title" content="Contact — Ananya">
+<meta property="og:type" content="website">
+<meta property="og:description"
+      content="Get in touch with Ananya.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:image"
+content="https://yourwebsite.com/images/preview.jpg">
+<meta property="og:url" content="https://yourwebsite.com/contact.html">
+  <title>Contact — Ananya</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap">
+
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #13131c;
+      --card: #1a1a28;
+      --accent1: #e8a87c;
+      --accent2: #a78bfa;
+      --accent3: #67e8f9;
+      --text: #f0eee8;
+      --muted: #8884a0;
+      --border: rgba(167,139,250,0.15);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ─── NOISE OVERLAY ─── */
+   body{
+ background:
+ radial-gradient(circle at top right,
+ rgba(167,139,250,.08),
+ transparent 40%),
+ var(--bg);
+}
+
+    /* ─── AMBIENT GLOW BLOBS ─── */
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(35px);
+      opacity: 0.18;
+      pointer-events: none;
+      animation: drift 14s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+    .blob-1 { width: 500px; height: 500px; background: var(--accent2); top: -150px; right: -100px; animation-delay: 0s; }
+    .blob-2 { width: 380px; height: 380px; background: var(--accent1); bottom: 100px; left: -120px; animation-delay: -5s; }
+    .blob-3 { width: 280px; height: 280px; background: var(--accent3); top: 50%; left: 50%; animation-delay: -9s; }
+
+    @keyframes drift {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(30px, 20px) scale(1.07); }
+    }
+
+    /* ─── NAVBAR ─── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 5vw;
+      display: flex;
+      align-items: center;
+      background: rgba(10,10,15,0.65);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2.2rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -4px;
+      width: 0; height: 1.5px;
+      background: var(--accent1);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--accent1); }
+    .nav-links a.active::after { width: 100%; }
+
+    /* ─── MAIN ─── */
+    main {
+      position: relative;
+      z-index: 1;
+      padding-top: 100px;
+    }
+
+    /* ─── HERO BANNER ─── */
+    .hero-banner {
+      position: relative;
+      min-height: 65vh;
+      display: flex;
+      align-items: center;
+      padding: 6rem 8vw 4rem;
+      overflow: hidden;
+    }
+
+    .hero-banner::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+  radial-gradient(circle at top right,
+  rgba(167,139,250,.18),
+  transparent 40%),
+  radial-gradient(circle at bottom left,
+  rgba(232,168,124,.12),
+  transparent 40%),
+  url('https://images.unsplash.com/photo-1596526131083-e8c633964948?w=1600&q=80')
+  center/cover no-repeat;
+
+  opacity:.12;
+}
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 750px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent3);
+      border: 1px solid rgba(103,232,249,0.3);
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent3);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 8vw, 6.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      animation: fadeUp 0.8s 0.15s ease both;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent1);
+      display: block;
+    }
+
+    .hero-sub {
+      margin-top: 1.5rem;
+      font-size: 1.1rem;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 500px;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .divider {
+      width: 80px; height: 2px;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      margin: 2rem 0;
+      animation: fadeUp 0.8s 0.45s ease both;
+    }
+
+    /* ─── SCROLL INDICATOR ─── */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      animation: fadeUp 1s 0.6s ease both;
+      opacity: 0.5;
+    }
+
+    .scroll-indicator span {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .scroll-mouse {
+      width: 22px; height: 36px;
+      border: 1.5px solid var(--muted);
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      padding-top: 6px;
+    }
+
+    .scroll-dot {
+      width: 4px; height: 8px;
+      background: var(--accent1);
+      border-radius: 2px;
+      animation: scrolldown 1.8s ease-in-out infinite;
+    }
+
+    @keyframes scrolldown {
+      0%   { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(12px); opacity: 0; }
+    }
+
+    /* ─── CONTACT SECTION ─── */
+    .contact-section {
+      padding: 5rem 8vw;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    /* ─── LEFT: INFO COL ─── */
+    .info-col {
+      animation: fadeUp 1s 0.2s ease both;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1.6rem;
+    }
+
+    .info-text {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.85;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+    }
+
+    .info-text strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* ─── CONTACT CARDS ─── */
+    .contact-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.2rem 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .contact-card:hover {
+      transform: translateX(6px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+      border-color: var(--accent2);
+    }
+
+    .contact-card-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .contact-card-body {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .contact-card-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .contact-card-value {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    /* ─── RIGHT: FORM COL ─── */
+    .form-col {
+      animation: fadeUp 1s 0.4s ease both;
+    }
+
+    .form-wrapper {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3));
+    }
+
+    .form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .form-sub {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-group label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.85rem 1.1rem;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 300;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      outline: none;
+      width: 100%;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(136,132,160,0.5);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--accent2);
+      box-shadow: 0 0 0 3px rgba(167,139,250,0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .form-group select {
+      appearance: none;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238884a0' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+    }
+
+    .form-group select option {
+      background: var(--card);
+    }
+
+    /* Submit button */
+    .btn-submit {
+      margin-top: 1.5rem;
+      width: 100%;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      color: #0a0a0f;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .btn-submit::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--accent2), var(--accent1));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .btn-submit span {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(232,168,124,0.35);
+    }
+
+    .btn-submit:hover::before { opacity: 1; }
+    .btn-submit:active { transform: translateY(0); }
+
+    /* ─── BOTTOM CARDS SECTION ─── */
+    .availability-section {
+      padding: 2rem 8vw 6rem;
+    }
+
+    .availability-section .section-label,
+    .availability-section .section-title {
+      text-align: center;
+    }
+
+    .availability-section .section-title { margin-bottom: 3rem; }
+
+    .avail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .avail-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem 1.6rem;
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+      overflow: hidden;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .avail-card:nth-child(1) { animation-delay: 0.1s; }
+    .avail-card:nth-child(2) { animation-delay: 0.25s; }
+    .avail-card:nth-child(3) { animation-delay: 0.4s; }
+
+    .avail-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .avail-card:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(0,0,0,0.4); }
+    .avail-card:hover::before { transform: scaleX(1); }
+
+    .avail-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .avail-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent3);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .avail-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .avail-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 8vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer p {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover { color: var(--accent1); }
+
+    /* ─── SUCCESS STATE ─── */
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      animation: fadeUp 0.5s ease;
+    }
+
+    .success-msg .success-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .success-msg h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .success-msg p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .contact-section { grid-template-columns: 1fr; gap: 3rem; }
+      .avail-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { gap: 1.2rem; }
+      .nav-links a { font-size: 0.75rem; }
+      .hero-banner { padding: 4rem 5vw 3rem; min-height: 55vh; }
+      .contact-section, .availability-section { padding: 3rem 5vw; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-wrapper { padding: 1.8rem; }
+      footer { flex-direction: column; text-align: center; }
+    }
+    .skip-link{
+  position:absolute;
+  top:-40px;
+  left:20px;
+  background:var(--accent2);
+  color:white;
+  padding:10px;
+  z-index:9999;
+}
+
+.skip-link:focus{
+  top:20px;
+}
+.visually-hidden{
+  position:absolute;
+  width:1px;
+  height:1px;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  border:0;
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible{
+  outline:2px solid var(--accent3);
+  outline-offset:4px;
+}
+@media (prefers-reduced-motion: reduce){
+
+  *{
+    animation:none !important;
+    transition:none !important;
+    scroll-behavior:auto !important;
+  }
+
+}
+  </style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">
+  Skip to Main Content
+</a>
+  <!-- AMBIENT BLOBS -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <!-- HEADER -->
+  <header>
+    <nav class="navbar" aria-label="Main Navigation">
+     <a href="index.html"
+   class="logo"
+   aria-label="Go to homepage">
+   Ananya
+</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li>
+  <a href="contact.html"
+     class="active"
+     aria-current="page">
+     Contact
+  </a>
+</li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main id="main-content">
+    <!-- HERO BANNER -->
+    <section
+  class="hero-banner"
+  aria-labelledby="contact-heading">
+  
+      <div class="hero-content">
+        <div class="hero-tag">Get In Touch</div>
+        <h1
+  id="contact-heading"
+  class="hero-title">
+          Let's
+          <em>Connect</em>
+        </h1>
+        <div class="divider"></div>
+        <p class="hero-sub">
+          Have a project in mind, an opportunity to share, or just want to say hello? I'd love to hear from you.
+        </p>
+      </div>
+      <div class="scroll-indicator" aria-hidden="true">
+        <div class="scroll-mouse"><div class="scroll-dot"></div></div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section
+  class="contact-section"
+  aria-labelledby="contact-section-heading">
+  <h2
+  id="contact-section-heading"
+  class="visually-hidden">
+  Contact Information
+</h2>
+
+      <!-- LEFT: INFO -->
+      <div class="info-col">
+        <p class="section-label">Reach out</p>
+        <h3 class="section-title">I'm always open to new opportunities.</h3>
+
+        <p class="info-text">
+          Whether you're looking to <strong>collaborate on a project</strong>, need a passionate
+          developer on your team, or just want to connect — my inbox is always open.
+        </p>
+        <p class="info-text" style="margin-top:-0.8rem">
+          I typically respond within <strong>24 hours</strong>. Let's build something great together!
+        </p>
+
+        <div class="contact-cards">
+          <a
+  href="mailto:ananyakamalakkannan@gmail.com"
+  class="contact-card"
+  aria-label="Send email to Ananya">
+            <div class="contact-card-icon">📧</div>
+            <div class="contact-card-body">
+              <span class="contact-card-label">Email</span>
+              <span class="contact-card-value">ananyakamalakkannan.com</span>
+            </div>
+          </a>
+          <a href="https://github.com/"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="contact-card"
+   aria-label="Visit Ananya GitHub profile">
+            <div class="contact-card-icon">🐙</div>
+            <div class="contact-card-body">
+              <span class="contact-card-label">GitHub</span>
+              <span class="contact-card-value">github.com/ananya</span>
+            </div>
+          </a>
+          <a href="https://linkedin.com/"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="contact-card"
+   aria-label="Visit Ananya LinkedIn profile">
+            <div class="contact-card-icon">💼</div>
+            <div class="contact-card-body">
+              <span class="contact-card-label">LinkedIn</span>
+              <span class="contact-card-value">linkedin.com/in/ananya</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT: FORM -->
+      <div class="form-col">
+        <div class="form-wrapper">
+          <h3 class="form-title">Send a Message</h3>
+          <p class="form-sub">Fill out the form below and I'll get back to you soon.</p>
+
+          <form
+  class="contact-form"
+  id="contactForm"
+  aria-label="Contact Form"
+  novalidate>
+            <div class="form-grid">
+
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                   required
+  aria-required="true"
+                  placeholder="Your full name"
+                  required
+                  aria-label="Full Name">
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                   required
+  aria-required="true"
+                  placeholder="your@email.com"
+                  aria-label="Email Address">
+              </div>
+
+              <div class="form-group full">
+                <label for="subject">Subject</label>
+                <select id="subject" name="subject" aria-label="Subject">
+                  <option value="" disabled selected>What's this about?</option>
+                  <option value="collaboration">Collaboration</option>
+                  <option value="opportunity">Job Opportunity</option>
+                  <option value="project">Project Idea</option>
+                  <option value="feedback">Feedback</option>
+                  <option value="other">Just Saying Hi 👋</option>
+                </select>
+              </div>
+
+              <div class="form-group full">
+                <label for="message">Message</label>
+                <textarea
+                
+  id="message"
+  name="message"
+  required
+  aria-required="true"
+                  placeholder="Tell me what's on your mind..."
+                  required
+                  aria-label="Message"></textarea>
+              </div>
+
+            </div>
+
+            <button type="submit" class="btn-submit">
+              <span>✦ Send Message</span>
+            </button>
+          </form>
+<div
+ id="successMsg"
+ class="success-msg"
+ role="alert"
+ aria-live="polite">
+            <span class="success-icon">🎉</span>
+            <h4>Message Sent!</h4>
+            <p>Thanks for reaching out. I'll get back to you soon.</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- AVAILABILITY SECTION -->
+    <section class="availability-section">
+      <p class="section-label">What I offer</p>
+      <h3 class="section-title">Ways We Can Work Together</h3>
+
+      <div class="avail-grid">
+        <article class="avail-card">
+          <span class="avail-icon">🎨</span>
+          <p class="avail-label">Design & Build</p>
+          <h4 class="avail-title">Frontend Development</h4>
+          <p class="avail-desc">Crafting clean, responsive, and accessible UIs with HTML, CSS, and JavaScript that look great on every device.</p>
+        </article>
+        <article class="avail-card">
+          <span class="avail-icon">🤝</span>
+          <p class="avail-label">Teamwork</p>
+          <h4 class="avail-title">Open to Collaborate</h4>
+          <p class="avail-desc">Looking for team projects, open-source contributions, or pair programming opportunities to grow together.</p>
+        </article>
+        <article class="avail-card">
+          <span class="avail-icon">💡</span>
+          <p class="avail-label">Learning</p>
+          <h4 class="avail-title">Always Exploring</h4>
+          <p class="avail-desc">Eager to learn from experienced developers, take on internships, or contribute to meaningful projects at any scale.</p>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer aria-label="Footer">
+    <p>© 2026 Ananya. All Rights Reserved.</p>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+    </div>
+  </footer>
+   <script>
+document.getElementById('contactForm')
+.addEventListener('submit', function(e){
+
+  e.preventDefault();
+
+  if(!this.checkValidity()){
+    this.reportValidity();
+    return;
+  }
+
+  this.style.display = 'none';
+
+  document.getElementById('successMsg')
+    .style.display = 'block';
+});
+</script>
+
+
+</body>
+</html>

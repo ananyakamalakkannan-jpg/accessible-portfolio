@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta
+ name="description"
+ content="Learn more about Ananya, a frontend developer passionate about creating accessible and responsive websites using HTML, CSS and JavaScript.">
+  <meta
+ name="keywords"
+ content="Ananya, frontend developer, portfolio, HTML, CSS, JavaScript">
+
+<meta
+ name="author"
+ content="Ananya">
+ <title>About — Ananya</title>
+ <meta property="og:title" content="About — Ananya">
+<meta property="og:type" content="website">
+<meta property="og:description"
+      content="Learn more about Ananya and her frontend development journey.">
+<meta property="og:image"
+      content="https://yourwebsite.com/images/preview.jpg">
+<meta property="og:url"
+      content="https://yourwebsite.com/about.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #13131c;
+      --card: #1a1a28;
+      --accent1: #e8a87c;
+      --accent2: #a78bfa;
+      --accent3: #67e8f9;
+      --text: #f0eee8;
+      --muted: #8884a0;
+      --border: rgba(167,139,250,0.15);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ─── NOISE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── AMBIENT GLOW BLOBS ─── */
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.18;
+      pointer-events: none;
+      animation: drift 14s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+    .blob-1 { width: 500px; height: 500px; background: var(--accent2); top: -150px; right: -100px; animation-delay: 0s; }
+    .blob-2 { width: 380px; height: 380px; background: var(--accent1); bottom: 100px; left: -120px; animation-delay: -5s; }
+    .blob-3 { width: 280px; height: 280px; background: var(--accent3); top: 50%; left: 50%; animation-delay: -9s; }
+
+    @keyframes drift {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(30px, 20px) scale(1.07); }
+    }
+
+    /* ─── NAVBAR ─── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 5vw;
+      display: flex;
+      align-items: center;
+      background: rgba(10,10,15,0.65);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2.2rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -4px;
+      width: 0; height: 1.5px;
+      background: var(--accent1);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--accent1); }
+    .nav-links a.active::after { width: 100%; }
+
+    /* ─── MAIN ─── */
+    main {
+      position: relative;
+      z-index: 1;
+      padding-top: 100px;
+    }
+
+    /* ─── HERO BANNER ─── */
+    .hero-banner {
+      position: relative;
+      min-height: 65vh;
+      display: flex;
+      align-items: center;
+      padding: 6rem 8vw 4rem;
+      overflow: hidden;
+    }
+
+    .hero-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=1600&q=80') center/cover no-repeat;
+      opacity: 0.12;
+      transform: scale(1.05);
+      animation: slowzoom 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes slowzoom {
+      from { transform: scale(1.05); }
+      to   { transform: scale(1.15); }
+    }
+
+    .hero-banner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(10,10,15,0.9) 40%, rgba(167,139,250,0.08) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 750px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent3);
+      border: 1px solid rgba(103,232,249,0.3);
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent3);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 8vw, 6.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      animation: fadeUp 0.8s 0.15s ease both;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent1);
+      display: block;
+    }
+
+    .hero-sub {
+      margin-top: 1.5rem;
+      font-size: 1.1rem;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 500px;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── DECORATIVE LINE ─── */
+    .divider {
+      width: 80px; height: 2px;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      margin: 2rem 0;
+      animation: fadeUp 0.8s 0.45s ease both;
+    }
+
+    /* ─── ABOUT SECTION ─── */
+    .about-section {
+      padding: 5rem 8vw;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    /* ─── LEFT: PHOTO CARD ─── */
+    .photo-col {
+      position: relative;
+      animation: fadeUp 1s 0.2s ease both;
+    }
+
+    .photo-frame {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .photo-frame:hover img { transform: scale(1.04); }
+
+    .photo-frame::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(10,10,15,0.7) 100%);
+    }
+
+    /* Floating badge */
+    .photo-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      z-index: 3;
+    }
+
+    .photo-badge span {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    .photo-badge strong {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent2);
+    }
+
+    /* Corner accent */
+    .photo-accent {
+      position: absolute;
+      top: -16px; left: -16px;
+      width: 100px; height: 100px;
+      border-top: 2px solid var(--accent1);
+      border-left: 2px solid var(--accent1);
+      border-radius: 8px 0 0 0;
+      opacity: 0.6;
+    }
+
+    /* ─── RIGHT: TEXT COL ─── */
+    .text-col {
+      animation: fadeUp 1s 0.4s ease both;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1.6rem;
+    }
+
+    .about-text {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.85;
+      margin-bottom: 1.1rem;
+      font-weight: 300;
+    }
+
+    .about-text strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* ─── SKILLS CHIPS ─── */
+    .skills-heading {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 2rem 0 1rem;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .chip {
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      cursor: default;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .chip::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .chip span { position: relative; z-index: 1; }
+
+    .chip:hover {
+      border-color: transparent;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(167,139,250,0.25);
+    }
+
+    .chip:hover::before { opacity: 1; }
+
+    /* ─── STAT CARDS ─── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.2rem 1rem;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+      border-color: var(--accent2);
+    }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent1);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 0.2rem;
+    }
+
+    /* ─── JOURNEY SECTION ─── */
+    .journey-section {
+      padding: 4rem 8vw 6rem;
+      position: relative;
+    }
+
+    .journey-section .section-label,
+    .journey-section .section-title {
+      text-align: center;
+    }
+
+    .journey-section .section-title { margin-bottom: 3rem; }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .timeline-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem 1.6rem;
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+      overflow: hidden;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .timeline-card:nth-child(1) { animation-delay: 0.1s; }
+    .timeline-card:nth-child(2) { animation-delay: 0.25s; }
+    .timeline-card:nth-child(3) { animation-delay: 0.4s; }
+
+    .timeline-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .timeline-card:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(0,0,0,0.4); }
+    .timeline-card:hover::before { transform: scaleX(1); }
+
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .card-year {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent3);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 8vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer p {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover { color: var(--accent1); }
+
+    /* ─── SCROLL INDICATOR ─── */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      animation: fadeUp 1s 0.6s ease both;
+      opacity: 0.5;
+    }
+
+    .scroll-indicator span {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .scroll-mouse {
+      width: 22px; height: 36px;
+      border: 1.5px solid var(--muted);
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      padding-top: 6px;
+    }
+
+    .scroll-dot {
+      width: 4px; height: 8px;
+      background: var(--accent1);
+      border-radius: 2px;
+      animation: scrolldown 1.8s ease-in-out infinite;
+    }
+
+    @keyframes scrolldown {
+      0%   { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(12px); opacity: 0; }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .about-section { grid-template-columns: 1fr; gap: 3rem; }
+      .timeline { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: repeat(3, 1fr); }
+      .photo-col { max-width: 380px; margin: 0 auto; }
+    }
+a:focus-visible,
+button:focus-visible{
+  outline:2px solid var(--accent3);
+  outline-offset:4px;
+}
+    @media (max-width: 600px) {
+      .nav-links { gap: 1.2rem; }
+      .nav-links a { font-size: 0.75rem; }
+      .hero-banner { padding: 4rem 5vw 3rem; min-height: 55vh; }
+      .about-section, .journey-section { padding: 3rem 5vw; }
+      footer { flex-direction: column; text-align: center; }
+    }
+    .skip-link{
+  position:absolute;
+  top:-40px;
+  left:20px;
+  background:var(--accent2);
+  color:white;
+  padding:10px;
+  z-index:9999;
+}
+
+.skip-link:focus{
+  top:20px;
+}
+@media (prefers-reduced-motion: reduce){
+
+  *{
+    animation:none !important;
+    transition:none !important;
+    scroll-behavior:auto !important;
+  }
+
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--accent3);
+  outline-offset: 4px;
+}
+  </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">
+  Skip to Main Content
+</a>
+  <!-- AMBIENT BLOBS -->
+  <div class="blob blob-1" aria-hidden="true"></div>
+<div class="blob blob-2" aria-hidden="true"></div>
+<div class="blob blob-3" aria-hidden="true"></div>
+
+  <!-- HEADER -->
+  <header>
+    <nav class="navbar" aria-label="primary">
+      <a href="index.html"
+   class="logo"
+   aria-label="Go to homepage">
+   Ananya
+</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li>
+  <a href="about.html"
+     class="active"
+     aria-current="page">
+     About
+  </a>
+</li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main id="main-content">
+
+    <!-- HERO BANNER -->
+    <section class="hero-banner">
+      <div class="hero-content">
+        <div class="hero-tag">Frontend Developer</div>
+        <h1 class="hero-title">
+  Hello, I'm
+  <em>Ananya</em>
+</h1>
+        <div class="divider"></div>
+        <p class="hero-sub">
+          Crafting beautiful, accessible and responsive digital experiences — one line of code at a time.
+        </p>
+      </div>
+      <div class="scroll-indicator" aria-hidden="true">
+        <div class="scroll-mouse"><div class="scroll-dot"></div></div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section
+ class="about-section"
+ aria-labelledby="about-heading">
+
+      <!-- PHOTO -->
+      <div class="photo-col">
+        <div class="photo-accent"></div>
+        <div class="photo-frame">
+          <img
+  src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=80"
+  alt="Portrait of Ananya, frontend developer"
+  loading="lazy"
+  decoding="async"
+/>
+        </div>
+        <div class="photo-badge">
+          <span>Status</span>
+          <strong>Open to Work ✦</strong>
+        </div>
+      </div>
+
+      <!-- TEXT -->
+      <div class="text-col">
+        <p class="section-label">Who I am</p>
+        <h2
+ id="about-heading"
+ class="section-title">
+A passionate developer on a journey to build the web.
+</h2>
+        <p class="about-text">
+          I'm a <strong>beginner frontend web developer</strong> who loves turning ideas into clean,
+          accessible, and user-friendly websites. I believe great design and solid code go hand in hand.
+        </p>
+        <p class="about-text">
+          I enjoy learning <strong>HTML, CSS, JavaScript</strong> and exploring modern web technologies
+          to keep growing my craft every single day.
+        </p>
+        <p class="about-text">
+          My goal? To become a <strong>professional full stack developer</strong> who builds meaningful
+          products that make people's lives easier and more delightful.
+        </p>
+
+        <p class="skills-heading">Technologies I'm learning</p>
+        <div class="chips">
+          <div class="chip"><span>HTML5</span></div>
+          <div class="chip"><span>CSS3</span></div>
+          <div class="chip"><span>JavaScript</span></div>
+          <div class="chip"><span>Responsive Design</span></div>
+          <div class="chip"><span>Git & GitHub</span></div>
+          <div class="chip"><span>React (soon)</span></div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-card">
+            <span class="stat-num">3+</span>
+            <p class="stat-label">Projects Built</p>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">∞</span>
+            <p class="stat-label">Things to Learn</p>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">100%</span>
+            <p class="stat-label">Passion</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- JOURNEY SECTION -->
+    <section
+ class="journey-section"
+ aria-labelledby="journey-heading">
+      <p class="section-label">My Path</p>
+       <h2
+    id="journey-heading"
+    class="section-title">
+    The Journey So Far
+  </h2>
+
+      <div class="timeline">
+        <div class="timeline-card">
+          <span class="card-icon">🌱</span>
+          <p class="card-year">The Beginning</p>
+          <h4 class="card-title">Discovered Web Dev</h4>
+          <p class="card-desc">Fell in love with the idea of creating things on the internet that anyone in the world can see.</p>
+        </div>
+        <div class="timeline-card">
+          <span class="card-icon">⚡</span>
+          <p class="card-year">Building Skills</p>
+          <h4 class="card-title">HTML, CSS & JS</h4>
+          <p class="card-desc">Diving deep into the fundamentals — semantic markup, responsive layouts, and interactive scripts.</p>
+        </div>
+        <div class="timeline-card">
+          <span class="card-icon">🚀</span>
+          <p class="card-year">The Goal</p>
+          <h4 class="card-title">Full Stack Developer</h4>
+          <p class="card-desc">Working towards mastering both frontend and backend to build complete, real-world applications.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+ <footer>
+    <p>© 2026 Ananya. All Rights Reserved.</p>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
+
+</body>
+</html>
