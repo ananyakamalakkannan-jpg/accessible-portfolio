@@ -1,15 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="theme-color" content="#0a0a0f">
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <meta
- name="description"
- content="Learn more about Ananya, a frontend developer passionate about creating accessible and responsive websites using HTML, CSS and JavaScript.">
-  <meta
- name="keywords"
- content="Ananya, frontend developer, portfolio, HTML, CSS, JavaScript">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta
  name="author"
  content="Ananya">
@@ -19,9 +13,9 @@
 <meta property="og:description"
       content="Learn more about Ananya and her frontend development journey.">
 <meta property="og:image"
-      content="https://yourwebsite.com/images/preview.jpg">
+      content="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200">
 <meta property="og:url"
-      content="https://yourwebsite.com/about.html">
+      content="https://ananyakamalakkannan-jpg.github.io/accessible-portfolio/about.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -69,6 +63,7 @@
       pointer-events: none;
       animation: drift 14s ease-in-out infinite alternate;
       z-index: 0;
+      will-change: transform;
     }
     .blob-1 { width: 500px; height: 500px; background: var(--accent2); top: -150px; right: -100px; animation-delay: 0s; }
     .blob-2 { width: 380px; height: 380px; background: var(--accent1); bottom: 100px; left: -120px; animation-delay: -5s; }
@@ -163,15 +158,9 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: url('https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=1600&q=80') center/cover no-repeat;
-      opacity: 0.12;
+      background: url('https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=800&q=60') center/cover no-repeat;
+      opacity: 0.08;
       transform: scale(1.05);
-      animation: slowzoom 20s ease-in-out infinite alternate;
-    }
-
-    @keyframes slowzoom {
-      from { transform: scale(1.05); }
-      to   { transform: scale(1.15); }
     }
 
     .hero-banner::after {
@@ -651,13 +640,7 @@ button:focus-visible{
   }
 
 }
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible {
-  outline: 3px solid var(--accent3);
-  outline-offset: 4px;
-}
+
   </style>
 </head>
 <body>
@@ -671,8 +654,8 @@ textarea:focus-visible {
 <div class="blob blob-3" aria-hidden="true"></div>
 
   <!-- HEADER -->
-  <header>
-    <nav class="navbar" aria-label="primary">
+  <header role="banner">
+    <nav class="navbar" aria-label="primary navigation">
       <a href="index.html"
    class="logo"
    aria-label="Go to homepage">
@@ -726,9 +709,11 @@ textarea:focus-visible {
         <div class="photo-frame">
           <img
   src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=80"
-  alt="Portrait of Ananya, frontend developer"
+  alt="Portrait of Ananya, a frontend web developer smiling"
   loading="lazy"
   decoding="async"
+  width="800"
+  height="1000"
 />
         </div>
         <div class="photo-badge">
@@ -774,7 +759,7 @@ A passionate developer on a journey to build the web.
             <p class="stat-label">Projects Built</p>
           </div>
           <div class="stat-card">
-            <span class="stat-num">∞</span>
+            <span class="stat-num">∞+</span>
             <p class="stat-label">Things to Learn</p>
           </div>
           <div class="stat-card">
@@ -822,7 +807,7 @@ A passionate developer on a journey to build the web.
   </main>
 
   <!-- FOOTER -->
- <footer>
+ <footer role="contentinfo">
     <p>© 2026 Ananya. All Rights Reserved.</p>
     <div class="footer-links">
       <a href="index.html">Home</a>
