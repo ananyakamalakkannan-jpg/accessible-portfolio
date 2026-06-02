@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -367,10 +368,10 @@
     }
 
     .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.8rem;
-    }
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
 
     /* ─── PROJECT CARD ─── */
     .project-card {
@@ -686,13 +687,49 @@ button:focus-visible {
 .skip-link:focus {
   top: 20px;
 }
+
+.logo:focus-visible{
+  outline: 2px solid var(--accent3);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+.project-card:focus-within {
+  border-color: var(--accent3);
+  box-shadow: 0 0 0 3px rgba(103,232,249,0.25);
+}
+img {
+  max-width: 100%;
+  display: block;
+}
   </style>
 </head>
 <body>
 <a href="#main-content" class="skip-link">
   Skip to Main Content
 </a>
+<button class="filter-btn active"
+        data-filter="all"
+        aria-pressed="true">
+  All Projects
+</button>
 
+<button class="filter-btn"
+        data-filter="html-css"
+        aria-pressed="false">
+  HTML & CSS
+</button>
+
+<button class="filter-btn"
+        data-filter="javascript"
+        aria-pressed="false">
+  JavaScript
+</button>
+
+<button class="filter-btn"
+        data-filter="api"
+        aria-pressed="false">
+  API
+</button>
   <!-- AMBIENT BLOBS -->
   <div class="blob blob-1" aria-hidden="true"></div>
 <div class="blob blob-2" aria-hidden="true"></div>
@@ -751,7 +788,9 @@ button:focus-visible {
     </div>
 
     <!-- PROJECTS SECTION -->
-    <section class="projects-section">
+    <section
+  class="projects-section"
+  aria-labelledby="portfolio-title">
       <p class="section-label">Portfolio</p>
       <h2 class="section-title">Things I've Built</h2>
 
@@ -862,7 +901,6 @@ button:focus-visible {
      GitHub →
   </a>
 </div>
-          </div>
         </article>
 
       </div>
@@ -888,7 +926,9 @@ button:focus-visible {
   <!-- FOOTER -->
   <footer>
     <p>© 2026 Ananya. All Rights Reserved.</p>
-    <div class="footer-links">
+    <nav
+  class="footer-links"
+  aria-label="Footer Navigation">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>

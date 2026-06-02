@@ -1,6 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="theme-color" content="#0a0a0f">
+  <meta property="og:title" content="Ananya — Portfolio">
+<meta property="og:type" content="website">
+<meta property="og:description"
+      content="Accessible personal portfolio website">
+<meta property="og:image"
+      content="https://yourwebsite.com/images/preview.jpg">
+<meta property="og:url"
+      content="https://yourwebsite.com/index.html">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Accessible personal portfolio website">
@@ -64,7 +74,7 @@ body {
 
     /* ─── AMBIENT GLOW BLOBS ─── */
     .blob {
-      position: absolute;
+      position: fixed;
       border-radius: 50%;
       filter: blur(35px);
       opacity: 0.18;
@@ -519,8 +529,9 @@ body {
 }
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--accent3);
+  outline: 3px solid var(--accent3);
   outline-offset: 4px;
+  border-radius: 4px;
 }
   </style>
 </head>
@@ -535,14 +546,18 @@ button:focus-visible {
   <!-- HEADER -->
   <header>
     <nav class="navbar" aria-label="Main Navigation">
-
-   <a href="index.html"
-   class="logo"
-   aria-label="Go to homepage">
-   Ananya
-</a>
+<h1 class="logo">
+  <a href="index.html"
+     aria-label="Go to homepage">
+     Ananya
+  </a>
+</h1>
       <ul class="nav-links">
-        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="index.html"
+   class="active"
+   aria-current="page">
+   Home
+</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="projects.html">Projects</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -602,22 +617,22 @@ button:focus-visible {
   
       <div class="skills-grid">
         <article class="skill-card">
-          <span class="skill-icon">🧱</span>
+          <span class="skill-icon" aria-hidden="true">🧱</span>
           <h4 class="skill-name">HTML5</h4>
           <p class="skill-desc">Semantic, accessible markup that forms the backbone of every great website.</p>
         </article>
         <article class="skill-card">
-          <span class="skill-icon">🎨</span>
+          <span class="skill-icon" aria-hidden="true">🎨</span>
           <h4 class="skill-name">CSS3</h4>
           <p class="skill-desc">Modern layouts, animations, and responsive designs that look great on every screen.</p>
         </article>
         <article class="skill-card">
-          <span class="skill-icon">⚡</span>
+          <span class="skill-icon" aria-hidden="true">⚡</span>
           <h4 class="skill-name">JavaScript</h4>
           <p class="skill-desc">Interactive, dynamic web experiences powered by clean and readable JS code.</p>
         </article>
         <article class="skill-card">
-          <span class="skill-icon">🐙</span>
+          <span class="skill-icon" aria-hidden="true">🐙</span>
           <h4 class="skill-name">GitHub</h4>
           <p class="skill-desc">Version control and collaboration — keeping projects organized and shareable.</p>
         </article>
@@ -627,7 +642,7 @@ button:focus-visible {
   </main>
 
   <!-- FOOTER -->
-  <footer>
+  <footer aria-label="Footer">
     <p>© 2026 Ananya. All Rights Reserved.</p>
     <div class="footer-links">
       <a href="about.html">About</a>
